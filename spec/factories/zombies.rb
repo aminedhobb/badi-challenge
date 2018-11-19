@@ -5,5 +5,7 @@ FactoryBot.define do
     speed             { Faker::Number.between(1, 10)}
     brains_eaten      { Faker::Number.between(1, 50) }
     turn_date         { Faker::Date.between(2.years.ago, Date.today) }
+    weapons           { [FactoryBot.create(:weapon)] }
+    armors            { [FactoryBot.create(:armor)] }
   end
 end

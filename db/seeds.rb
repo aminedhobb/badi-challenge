@@ -11,9 +11,5 @@ Weapon.destroy_all
 Armor.destroy_all
 
 50.times do
-  FactoryBot.create(
-    :zombie,
-    weapons: [FactoryBot.create(:weapon)],
-    armors: [FactoryBot.create(:armor)]
-  )
+  FactoryBot.create(:zombie)
 end

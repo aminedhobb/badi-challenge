@@ -1,4 +1,6 @@
 class Api::V1::ZombiesController < ApplicationController
+  before_action :set_zombie, only: [:show, :update, :destroy]
+  deserializable_resource :zombie, class: DeserializableZombie, only: %i[create update]
 
   def index
     @zombies = Zombie.all
