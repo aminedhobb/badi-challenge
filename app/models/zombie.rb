@@ -8,4 +8,6 @@ class Zombie < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   validates_presence_of :hit_points, :speed, :turn_date
+
+  accepts_nested_attributes_for :armors, :weapons
 end

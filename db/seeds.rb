@@ -11,31 +11,9 @@ Weapon.destroy_all
 Armor.destroy_all
 
 50.times do
-  Zombie.create!(
-    name: "#{Faker::Superhero.prefix} #{Faker::RickAndMorty.character}",
-    hit_points: Faker::Number.between(1, 10),
-    speed: Faker::Number.between(1, 10),
-    brains_eaten: Faker::Number.between(1, 50),
-    turn_date: Faker::Date.between(2.years.ago, Date.today)
-  )
-end
-
-20.times do
-  Weapon.create!(
-    name: "#{Faker::Hacker.adjective} #{Faker::Music.instrument}".capitalize,
-    attack_points: Faker::Number.between(1, 10),
-    durability: Faker::Number.between(1, 10),
-    price: Faker::Number.between(1, 50)
-  )
-end
-
-ARMOR_SUFFIXES = %w(armor helmet shield).freeze
-
-20.times do
-  Armor.create!(
-    name: "#{Faker::Food.ingredient} #{ARMOR_SUFFIXES.sample}".capitalize,
-    defense_points: Faker::Number.between(1, 10),
-    durability: Faker::Number.between(1, 10),
-    price: Faker::Number.between(1, 50)
+  FactoryBot.create(
+    :zombie,
+    weapons: [FactoryBot.create(:weapon)],
+    armors: [FactoryBot.create(:armor)]
   )
 end
