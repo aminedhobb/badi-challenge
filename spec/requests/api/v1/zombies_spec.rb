@@ -29,6 +29,31 @@ RSpec.describe 'Zombies API', type: :request do
     end
   end
 
+  # When we add a query to our request
+  describe 'GET /zombies?query=:query' do
+    let(:zombie) { FactoryBot.create(:zombie, :reindex) }
+
+    context 'when the query matches a record' do
+      before { get "/api/v1/zombies?query=#{zombie.name}" }
+
+      it 'returns at least one record' do
+        expect(json['data']).not_to be_empty
+      end
+
+      it 'returns a status code 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when the query does not match a record' do
+      before { get '/api/v1/zombies?query=this-is-not-a-zombie' }
+
+      it 'does not return any record' do
+        expect(json['data']).to be_empty
+      end
+    end
+  end
+
   describe 'GET /zombies/:id' do
     before { get "/api/v1/zombies/#{zombie_id}" }
 

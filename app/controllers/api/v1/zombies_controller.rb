@@ -1,9 +1,13 @@
 class Api::V1::ZombiesController < ApplicationController
-  before_action :set_zombie, only: [:show, :update, :destroy]
+  before_action :set_zombie, only: %i[show update destroy]
   deserializable_resource :zombie, class: DeserializableZombie, only: %i[create update]
 
   def index
-    @zombies = Zombie.preload(:armors, :weapons).all
+    @zombies = if params[:query].present?
+                 Zombie.search(params[:query]).results
+               else
+                 Zombie.preload(:armors, :weapons).all
+               end
     json_response(@zombies)
   end
 

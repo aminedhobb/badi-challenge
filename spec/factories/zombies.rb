@@ -7,5 +7,11 @@ FactoryBot.define do
     turn_date         { Faker::Date.between(2.years.ago, Date.today) }
     weapons           { [FactoryBot.create(:weapon)] }
     armors            { [FactoryBot.create(:armor)] }
+
+    trait :reindex do
+      after(:create) do |zombie, _evaluator|
+        zombie.reindex(refresh: true)
+      end
+    end
   end
 end

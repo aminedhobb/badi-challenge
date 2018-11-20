@@ -1,4 +1,4 @@
-FROM ruby:2.3.1
+FROM ruby:2.5.1
 
 RUN apt-get -y update && apt-get -y upgrade
 
