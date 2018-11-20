@@ -3,13 +3,13 @@ class Api::V1::ZombiesController < ApplicationController
   deserializable_resource :zombie, class: DeserializableZombie, only: %i[create update]
 
   def index
-    @zombies = Zombie.all
+    @zombies = Zombie.preload(:armors, :weapons).all
     json_response(@zombies)
   end
 
   def create
     @zombie = Zombie.create!(zombie_params)
-    json_response(@zombie)
+    json_response(@zombie, 201)
   end
 
   def show
@@ -17,7 +17,7 @@ class Api::V1::ZombiesController < ApplicationController
   end
 
   def update
-    @zombie.update(zombie_params)
+    @zombie.update!(zombie_params)
     head :no_content
   end
 
