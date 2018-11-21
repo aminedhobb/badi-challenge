@@ -1,4 +1,4 @@
-class Api::V1::ZombiesController < ApplicationController
+class Api::V1::ZombiesController < ApiController
   before_action :set_zombie, only: %i[show update destroy]
   deserializable_resource :zombie, class: DeserializableZombie, only: %i[create update]
 

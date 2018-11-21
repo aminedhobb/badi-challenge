@@ -1,0 +1,75 @@
+body {
+  background-color: #F4F4F4;
+}
+.app {
+  margin: 30px;
+  display: flex;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+}
+
+.description-container {
+  width: 30%;
+  height: 80vh;
+  background-color: white;
+  h3 {
+    margin-top: 25%;
+  }
+
+  .description-image {
+    height: 50%;
+    background-image: url("https://cdn.images.express.co.uk/img/dynamic/78/590x/WalkingDead-963583.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.cards-container {
+  padding: 20px;
+  width: 70%;
+  overflow: scroll;
+  background-color: #DBDBDB;
+}
+
+.car-container {
+  padding: 20px;
+  width: 70%;
+  background-image: url("http://supercars.agent4stars.com/wp-content/uploads/2017/08/Seinfield-Collection.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.form-container {
+  padding: 40px;
+  width: 70%;
+  background-image: url("http://supercars.agent4stars.com/wp-content/uploads/2017/08/Seinfield-Collection.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.form-list {
+  padding: 20px;
+  background-color: white;
+}
+.card {
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+}
+
+a,
+a:hover,
+a:focus {
+  color: #363636;
+  text-decoration: none;
+}
+
+.car-form {
+  margin: 20px;
+  text-align: center;
+}
+
+.delete-icon {
+  cursor: pointer;
+}

@@ -21,5 +21,8 @@
 # Ignore test coverage files
 /coverage
 
-# Ignore secret file
-config/secrets.yml
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
