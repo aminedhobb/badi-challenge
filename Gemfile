@@ -21,6 +21,12 @@ gem 'jsonapi-rails'
 # Search Gem
 gem 'searchkick'
 
+# To create records easily
+gem 'factory_bot_rails', '~> 4.0'
+
+# Use Faker to create seeds or factories
+gem 'faker', git: 'https://github.com/stympy/faker'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -36,13 +42,11 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
-  gem 'factory_bot_rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false
   # Use Rspec as testing tool
   gem 'rspec-rails'
-  # Use Faker to create seeds or factories
-  gem 'faker', git: 'https://github.com/stympy/faker'
+
 end
 
 group :development do
