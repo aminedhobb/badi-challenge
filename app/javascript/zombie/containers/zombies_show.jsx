@@ -11,57 +11,13 @@ class ZombiesShow extends Component {
 
   componentWillMount() {
     if (!this.props.zombie) {
-      console.log('i am here')
       this.props.fetchZombies();
     }
   }
 
-  renderWeapons(weapons) {
-    return (
-      weapons.map((weapon) => {
-        return(
-          <ul>
-            <li> Name : {weapon.name} </li>
-            <li> Attack points : {weapon.attack_points} </li>
-            <li> Durability : {weapon.durability} </li>
-            <li> Price : {weapon.price} </li>
-          </ul>
-        )
-      })
-    );
-  }
-  
-  renderArmors(armors) {
-    return (
-      armors.map((armor) => {
-        return(
-          <ul>
-            <li> Name : {armor.name} </li>
-            <li> Defense points : {armor.defense_points} </li>
-            <li> Durability : {armor.durability} </li>
-            <li> Price : {armor.price} </li>
-          </ul>
-        )
-      })
-    );
-  }
-
   render () {
     const zombie = this.props.zombie;
-    console.log(zombie);
-    let weapons = null;
-    let armors = null;
 
-    console.log(zombie.attributes.weapons.length)
-    if (!zombie.attributes.weapons.length === 0 ) {
-      weapons = this.renderWeapons(zombie.attributes.weapons);
-    }
-
-    if (!zombie.attributes.armors.length === 0 ) {
-      armors = this.renderarmors(zombie.attributes.armors);
-    }
-
-    console.log(weapons)
     if (!zombie) {
       return (
         <Aside key="aside">
@@ -72,15 +28,39 @@ class ZombiesShow extends Component {
       <Aside key="aside">
         <Link to="/">Back to list</Link>
       </Aside>,
-      <div className="zombie-container" key="zombie">
+      <div className="zombie-container" key="zombie"  
+      style={{backgroundImage: 'url("https://cdn03.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_IZombie_image1600w.jpg")',
+              backgroundSize: 'cover'}}>
         <div className="zombie-card">
-          <img className="zombie-picture" src="/assets/images/logo_square.svg" />
+          <img className="zombie-picture" src="https://img.maxisciences.com/article/480/agriculture/zombie-daniel-hollister_9baad9cbe47db35f7c810094d671761ab157b893.jpg" />
           <div className="zombie-details">
             <span>{zombie.attributes.name}</span>
-              <h5> Weapons : </h5>
-                {weapons}
-              <h5> Amors </h5>
-                {armors}
+            <div className="weapons-details">
+              <h4> Weapons : </h4>
+                {this.props.zombie.attributes.weapons.map((weapon) => {
+                  return(
+                    <ul>
+                      <li> Name : {weapon.name} </li>
+                      <li> Attack points : {weapon.attack_points} </li>
+                      <li> Durability : {weapon.durability} </li>
+                      <li> Price : {weapon.price} </li>
+                    </ul>
+                  )
+                })}
+            </div>
+            <div className="armors-details">
+              <h4> Armors : </h4>
+                {this.props.zombie.attributes.armors.map((armor) => {
+                  return(
+                    <ul>
+                      <li> Name : {armor.name} </li>
+                      <li> Defense points : {armor.defense_points} </li>
+                      <li> Durability : {armor.durability} </li>
+                      <li> Price : {armor.price} </li>
+                    </ul>
+                  )
+                })}
+            </div>
           </div>
         </div>
       </div>
