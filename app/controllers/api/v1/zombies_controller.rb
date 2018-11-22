@@ -4,7 +4,7 @@ class Api::V1::ZombiesController < ApiController
 
   def index
     @zombies = if params[:query].present?
-                 Zombie.search(params[:query]).results
+                 Zombie.search(params[:query], match: :word_start).results
                else
                  Zombie.preload(:armors, :weapons).all
                end

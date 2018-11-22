@@ -1,5 +1,5 @@
 class Zombie < ApplicationRecord
-  searchkick
+  searchkick word_start: [:zombie_name, :weapons_name, :armors_name]
   scope :search_import, -> { includes(:weapons, :armors) }
 
   has_many :zombie_armors, dependent: :destroy
@@ -20,12 +20,5 @@ class Zombie < ApplicationRecord
       weapons_name: weapons.map(&:name).join(' ').to_s,
       armors_name: armors.map(&:name).join(' ').to_s
     }
-  end
-
-  def elastic_search(query)
-    elastic_query = {
-      fields: %i[zombie_name weapons_name armors_name]
-    }
-    search(query, elastic_query)
   end
 end

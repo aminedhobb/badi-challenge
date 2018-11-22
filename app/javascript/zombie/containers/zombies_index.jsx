@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchCars } from '../actions';
 import { Link } from 'react-router-dom'; 
 
-import { fetchZombies } from '../actions';
+import { fetchZombies, searchZombies } from '../actions';
+import Aside from '../components/aside';
 
 class ZombiesIndex extends Component {
 
@@ -12,42 +12,41 @@ class ZombiesIndex extends Component {
     this.props.fetchZombies();
   }
 
-  renderZombies() {
-    return(
-      this.props.zombies.map((zombie) => {
-        return(
-          <div className="card" key={zombie.attributes.name} >
-            <h4> {zombie.attributes.name} </h4>
-            <p> <strong> Hit points :</strong> {zombie.attributes.hitpoints}</p>
-            <p> <strong> Speed :</strong> {zombie.attributes.speed} </p>
-            <p> <strong> Brains Eaten :</strong> {zombie.attributes.brains_eaten} </p>
-            <p> <strong> Turn Date :</strong> {zombie.attributes.turn_date} </p>            
-          </div>
-        )
-      })
-    )
+  handleUpdate = (event) => {
+    this.props.searchZombies(event.target.value);
   }
 
   render() {
-    return(
-      <div className="app">
-        <div className="description-container">
-          <div className="description-image">
-          </div>
-          <h3 className="text-center"> Zombie Challenge !</h3>
-          <div className="text-center">
-            <Link className="btn btn-primary btn-cta" to="/cars/new">
-                Add a zombie
-            </Link> 
-          </div>
+    return [
+      <Aside key="aside">
+
+      </Aside>,
+      <div className="list-container" key="zombies">
+        <div className="search-bar">
+          <input type="text" className="form-control form-search"
+            onChange={this.handleUpdate} />
         </div>
-        <div className="cards-container">
-          {this.renderZombies()}
-        </div>
+        {this.props.zombies.map((zombie) => {
+          return (
+            <div key={zombie.id} className="zombie-smallad">
+              <Link to={`/zombies/${zombie.id}`} key={zombie.id} />
+              <img className="zombie-logo" src="https://img.freepik.com/free-vector/zombie-mascot_31492-44.jpg?size=338&ext=jpg" />
+              <div className="zombie-details">
+                <span>{zombie.attributes.name}</span>
+                <ul>
+                  <li><strong>Hit points:</strong> {zombie.attributes.hit_points}</li>
+                  <li><strong>Speed:</strong> {zombie.attributes.speed}</li>
+                  <li><strong>Brains Eaten:</strong> {zombie.attributes.brains_eaten}</li>
+                </ul>
+              </div>
+            </div>
+          );
+        })}
       </div>
-    )
-  }
+    ];
+  };
 }
+
 
 function mapStateToProps(state) {
   return {
@@ -56,7 +55,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchZombies }, dispatch)
+  return bindActionCreators({ fetchZombies, searchZombies }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ZombiesIndex);
