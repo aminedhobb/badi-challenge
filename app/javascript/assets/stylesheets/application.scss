@@ -180,8 +180,8 @@ ul {
 }
 
 .zombie-picture {
-  width: 220px;
-  height: 110px;
+  height: 250px;
+  width: 250px;
 }
 
 .zombie-details {
@@ -211,16 +211,22 @@ ul {
 }
 
 .form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  // display: flex;
+  // justify-content: center;
+  // position: relative;
+  overflow: scroll;
   width: calc(100% - 220px);
-  height: 100%;
-  background-color: #dbdbdb;
+  background-image: url("https://cdn03.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_IZombie_image1600w.jpg");
   background-size: cover;
   background-position: center center;
+  text-align: center;
 }
+
+.form-content {
+  display: inline-block;
+  text-align: left;
+}
+
 
 .overlay {
   position: absolute;

@@ -19,7 +19,7 @@ class ZombiesIndex extends Component {
   render() {
     return [
       <Aside key="aside">
-
+        <Link to="/zombies/new">Create a zombie</Link>
       </Aside>,
       <div className="list-container" key="zombies">
         <div className="search-bar">

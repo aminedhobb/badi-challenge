@@ -30,33 +30,33 @@ class ZombiesShow extends Component {
       </Aside>,
       <div className="zombie-container" key="zombie"  
       style={{backgroundImage: 'url("https://cdn03.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_IZombie_image1600w.jpg")',
-              backgroundSize: 'cover'}}>
+              backgroundSize: 'cover', backgroundPosition: 'center center'}}>
         <div className="zombie-card">
-          <img className="zombie-picture" src="https://img.maxisciences.com/article/480/agriculture/zombie-daniel-hollister_9baad9cbe47db35f7c810094d671761ab157b893.jpg" />
+          <img className="zombie-picture" src="https://img00.deviantart.net/144a/i/2006/067/0/d/acrylic_zombie_square_by_jimroundsound.jpg" />
           <div className="zombie-details">
             <span>{zombie.attributes.name}</span>
             <div className="weapons-details">
-              <h4> Weapons : </h4>
+              <h5><strong> Weapons : </strong></h5>
                 {this.props.zombie.attributes.weapons.map((weapon) => {
                   return(
                     <ul>
-                      <li> Name : {weapon.name} </li>
-                      <li> Attack points : {weapon.attack_points} </li>
-                      <li> Durability : {weapon.durability} </li>
-                      <li> Price : {weapon.price} </li>
+                      <li>Name: {weapon.name} </li>
+                      <li>Attack points: {weapon.attack_points} </li>
+                      <li>Durability: {weapon.durability} </li>
+                      <li>Price: {weapon.price} </li>
                     </ul>
                   )
                 })}
             </div>
             <div className="armors-details">
-              <h4> Armors : </h4>
+              <h5><strong> Armors : </strong></h5>
                 {this.props.zombie.attributes.armors.map((armor) => {
                   return(
                     <ul>
-                      <li> Name : {armor.name} </li>
-                      <li> Defense points : {armor.defense_points} </li>
-                      <li> Durability : {armor.durability} </li>
-                      <li> Price : {armor.price} </li>
+                      <li>Name: {armor.name} </li>
+                      <li>Defense points: {armor.defense_points} </li>
+                      <li>Durability: {armor.durability} </li>
+                      <li>Price: {armor.price} </li>
                     </ul>
                   )
                 })}

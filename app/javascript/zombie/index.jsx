@@ -12,6 +12,7 @@ import '../assets/stylesheets/application.scss';
 
 import ZombiesIndex from './containers/zombies_index';
 import ZombiesShow from './containers/zombies_show';
+import ZombiesNew from './containers/zombies_new';
 
 import zombiesReducer from './reducers/zombies_reducer';
 
@@ -32,6 +33,7 @@ ReactDOM.render(
       <div className="view-container">
         <Switch>
           <Route path="/" exact component={ZombiesIndex} />
+          <Route path="/zombies/new" exact component={ZombiesNew} />
           <Route path="/zombies/:id" component={ZombiesShow} />
         </Switch>
       </div>

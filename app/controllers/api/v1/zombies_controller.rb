@@ -37,7 +37,8 @@ class Api::V1::ZombiesController < ApiController
   end
 
   def zombie_params
-    params.require(:zombie).permit(:name, :hit_points, :brains_eaten, :speed, :turn_date,
+    params.require(:zombie).permit(:name, :hit_points, :brains_eaten, :speed,
+      :turn_date,
       weapon_ids: [], armor_ids: [],
       weapons_attributes: %i[name attack_points durability price],
       armors_attributes: %i[name defense_points durability price])
