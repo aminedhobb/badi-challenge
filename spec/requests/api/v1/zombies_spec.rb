@@ -4,6 +4,7 @@ RSpec.describe 'Zombies API', type: :request do
   # initialize test data
   let!(:zombies) { create_list(:zombie, 10) }
   let!(:zombie_id) { zombies.first.id }
+  let(:user) { zombies.first.user }
   let(:invalid_attributes) do
     {
       data: {
@@ -94,6 +95,7 @@ RSpec.describe 'Zombies API', type: :request do
             brains_eaten: rand(1..10),
             speed: rand(1..50),
             turn_date: Date.today,
+            user_id: user.id,
             weapons_attributes: [
               {
                 name: 'a new test weapon',
@@ -116,7 +118,10 @@ RSpec.describe 'Zombies API', type: :request do
     end
 
     context 'when the request is valid' do
-      before { post '/api/v1/zombies', params: valid_attributes, headers: headers }
+      before do
+        sign_in user
+        post '/api/v1/zombies', params: valid_attributes, headers: headers 
+      end
 
       it 'creates a zombie' do
         expect(json['data']['attributes']['name']).to eq('Zombie Test 1')
@@ -128,14 +133,17 @@ RSpec.describe 'Zombies API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/api/v1/zombies', params: invalid_attributes, headers: headers }
+      before do 
+        sign_in user
+        post '/api/v1/zombies', params: invalid_attributes, headers: headers 
+      end
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
 
       it 'returns a validation failure message' do
-        expect(response.body).to match(/Validation failed: Name can't be blank/)
+        expect(response.body).to match(/Name can't be blank/)
       end
     end
   end
@@ -152,7 +160,8 @@ RSpec.describe 'Zombies API', type: :request do
             brains_eaten: rand(1..10),
             speed: rand(1..50),
             turn_date: Date.today,
-            weapons_ids: [Weapon.first, Weapon.last],
+            weapons_ids: [Weapon.first.id, Weapon.last.id],
+            user_id: user.id,
             armors_attributes: [
               {
                 name: 'not the same armor',
@@ -167,7 +176,10 @@ RSpec.describe 'Zombies API', type: :request do
     end
 
     context 'when the record exists' do
-      before { put "/api/v1/zombies/#{zombie_id}", params: valid_attributes, headers: headers }
+      before do
+        sign_in user
+        put "/api/v1/zombies/#{zombie_id}", params: valid_attributes, headers: headers 
+      end
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -180,7 +192,10 @@ RSpec.describe 'Zombies API', type: :request do
 
     context 'when the record does not exist' do
       let(:zombie_id) { 'do-not-exist' }
-      before { put "/api/v1/zombies/#{zombie_id}", params: valid_attributes, headers: headers }
+      before do
+        sign_in user
+        put "/api/v1/zombies/#{zombie_id}", params: valid_attributes, headers: headers 
+      end
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
@@ -192,7 +207,10 @@ RSpec.describe 'Zombies API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { put "/api/v1/zombies/#{zombie_id}", params: invalid_attributes, headers: headers }
+      before do
+        sign_in user
+        put "/api/v1/zombies/#{zombie_id}", params: invalid_attributes, headers: headers
+      end
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -206,7 +224,10 @@ RSpec.describe 'Zombies API', type: :request do
 
   # Test suite for DELETE /zombies/:id
   describe 'DELETE /zombies/:id' do
-    before { delete "/api/v1/zombies/#{zombie_id}" }
+    before do
+      sign_in user
+      delete "/api/v1/zombies/#{zombie_id}"
+    end
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)

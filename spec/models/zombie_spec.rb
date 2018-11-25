@@ -11,6 +11,7 @@ RSpec.describe Zombie, type: :model do
   it { should validate_presence_of(:hit_points) }
   it { should validate_presence_of(:speed) }
   it { should validate_presence_of(:turn_date) }
+  it { should validate_presence_of(:user) }
 
   it { should validate_uniqueness_of(:name) }
 

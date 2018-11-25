@@ -9,6 +9,7 @@ require 'rspec/rails'
 require 'simplecov'
 SimpleCov.start do
   add_filter '/config/initializers/'
+  add_filter 'spec/support'
 end
 # configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
 Shoulda::Matchers.configure do |config|
@@ -46,6 +47,9 @@ RSpec.configure do |config|
 
   # include the request helper
   config.include RequestSpecHelper, type: :request
+
+  # devise test helper
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

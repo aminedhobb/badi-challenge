@@ -1,5 +1,6 @@
-class Api::V1::ZombiesController < ApiController
+class Api::V1::ZombiesController < ApplicationController
   before_action :set_zombie, only: %i[show update destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show, :user]
   deserializable_resource :zombie, class: DeserializableZombie, only: %i[create update]
 
   def index
@@ -12,7 +13,9 @@ class Api::V1::ZombiesController < ApiController
   end
 
   def create
-    @zombie = Zombie.create!(zombie_params)
+    @zombie = Zombie.new(zombie_params)
+    @zombie.user = current_user
+    @zombie.save!
     json_response(@zombie, 201)
   end
 
@@ -30,6 +33,10 @@ class Api::V1::ZombiesController < ApiController
     head :no_content
   end
 
+  def user
+    render json: { user_id: current_user&.id }
+  end
+
   private
 
   def set_zombie
@@ -38,7 +45,7 @@ class Api::V1::ZombiesController < ApiController
 
   def zombie_params
     params.require(:zombie).permit(:name, :hit_points, :brains_eaten, :speed,
-      :turn_date,
+      :turn_date, :user_id,
       weapon_ids: [], armor_ids: [],
       weapons_attributes: %i[name attack_points durability price],
       armors_attributes: %i[name defense_points durability price])

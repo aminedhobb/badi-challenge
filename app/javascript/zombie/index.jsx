@@ -8,19 +8,23 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createHistory } from 'history';
 import { reducer as formReducer } from 'redux-form';
 
-import '../assets/stylesheets/application.scss';
-
 import ZombiesIndex from './containers/zombies_index';
 import ZombiesShow from './containers/zombies_show';
 import ZombiesNew from './containers/zombies_new';
 
 import zombiesReducer from './reducers/zombies_reducer';
+import userReducer from './reducers/user_reducer'
+import weaponsReducer from './reducers/weapons_reducer'
+import armorsReducer from './reducers/armors_reducer'
 
 import { initialState } from './data/initial_state';
 
 const reducers = combineReducers({
   zombies: zombiesReducer,
-  form: formReducer
+  form: formReducer,
+  user: userReducer,
+  weapons: weaponsReducer,
+  armors: armorsReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

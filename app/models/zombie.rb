@@ -2,6 +2,8 @@ class Zombie < ApplicationRecord
   searchkick word_start: [:zombie_name, :weapons_name, :armors_name]
   scope :search_import, -> { includes(:weapons, :armors) }
 
+  belongs_to :user
+
   has_many :zombie_armors, dependent: :destroy
   has_many :zombie_weapons, dependent: :destroy
 
@@ -10,7 +12,7 @@ class Zombie < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  validates_presence_of :hit_points, :speed, :turn_date
+  validates_presence_of :hit_points, :speed, :turn_date, :user
 
   accepts_nested_attributes_for :armors, :weapons
 

@@ -12,6 +12,11 @@ class ZombiesIndex extends Component {
     this.props.fetchZombies();
   }
 
+  handleClick = () => {
+    fetch('/users/sign_out', {
+      method: 'DELETE',      
+    });
+  }
   handleUpdate = (event) => {
     this.props.searchZombies(event.target.value);
   }
@@ -20,6 +25,8 @@ class ZombiesIndex extends Component {
     return [
       <Aside key="aside">
         <Link to="/zombies/new">Create a zombie</Link>
+        <br/>
+        <Link to="/users/sign_in" onClick={this.handleClick} >Log out</Link>
       </Aside>,
       <div className="list-container" key="zombies">
         <div className="search-bar">
@@ -50,7 +57,7 @@ class ZombiesIndex extends Component {
 
 function mapStateToProps(state) {
   return {
-    zombies: state.zombies.data
+    zombies: state.zombies.data,
   }
 }
 

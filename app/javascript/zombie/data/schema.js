@@ -16,9 +16,23 @@ export const schema = {
             speed: { type: "integer", title: "speed" },
             brains_eaten: { type: "integer", title: "brains eaten" },
             turn_date: { type: "string", title: "turn date" },
+            weapon_ids: {
+              type: "array",
+              title: "select weapons",
+              items: {
+                type: "integer"
+              }
+            },
+            armor_ids: {
+              type: "array",
+              title: "select armors",
+              items: {
+                type:"integer"
+              }
+            },
             weapons_attributes: {
               type: "array",
-              title: "weapons",
+              title: "add a new weapon",
               items: {
                 type: "object",
                 required: ["name", "attack_points", "durability", "price"],
@@ -32,7 +46,7 @@ export const schema = {
             },
             armors_attributes: {
               type: "array",
-              title: "armors",
+              title: "add a new armor",
               items: {
                 type: "object",
                 required: ["name", "defense_points", "durability", "price"],

@@ -10,6 +10,10 @@ Zombie.destroy_all
 Weapon.destroy_all
 Armor.destroy_all
 
+puts 'creating zombies, weapons, armors and users...'
+
 50.times do
   FactoryBot.create(:zombie)
 end
+
+puts 'records created !'

@@ -35,5 +35,34 @@ export const initialState = {
         }
       }
     ]
+  },
+  "user": {
+    "user_id": null
+  },
+  "armors": {
+    "data":[
+      {
+        "id": 244,
+        "name": "Agar warmor 409",
+        "defense_points": 3,
+        "durability": 10,
+        "price": 14,
+        "created_at": "2018-11-23T15:04:23.000Z",
+        "updated_at": "2018-11-23T15:04:23.000Z"
+      }
+    ]
+  },
+  "weapons": {
+    "data": [
+      {
+        "id": 252,
+        "name": "Back-end xylophone 286",
+        "attack_points": 3,
+        "durability": 4,
+        "price": 24,
+        "created_at": "2018-11-23T15:04:23.000Z",
+        "updated_at": "2018-11-23T15:04:23.000Z"
+      }
+    ]
   }
 };

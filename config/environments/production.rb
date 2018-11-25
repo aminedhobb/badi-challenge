@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
-config.webpacker.check_yarn_integrity = false
+  config.webpacker.check_yarn_integrity = false
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -47,7 +47,9 @@ config.webpacker.check_yarn_integrity = false
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
+
+  config.action_mailer.default_url_options = { host: 'http://zombiechallenge.herokuapp.com' }
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
