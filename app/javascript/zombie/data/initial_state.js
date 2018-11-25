@@ -37,7 +37,7 @@ export const initialState = {
     ]
   },
   "user": {
-    "user_id": null
+    "id": null
   },
   "armors": {
     "data":[

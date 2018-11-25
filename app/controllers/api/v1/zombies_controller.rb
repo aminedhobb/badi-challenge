@@ -13,9 +13,7 @@ class Api::V1::ZombiesController < ApplicationController
   end
 
   def create
-    @zombie = Zombie.new(zombie_params)
-    @zombie.user = current_user
-    @zombie.save!
+    @zombie = Zombie.create!(zombie_params)
     json_response(@zombie, 201)
   end
 
@@ -34,7 +32,7 @@ class Api::V1::ZombiesController < ApplicationController
   end
 
   def user
-    render json: { user_id: current_user&.id }
+    render json: { id: current_user&.id }
   end
 
   private

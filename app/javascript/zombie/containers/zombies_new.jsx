@@ -6,7 +6,7 @@ import Form from 'react-jsonschema-form';
 import Aside from '../components/aside';
 import { schema, uiSchema, formData } from '../data/schema';
 
-import { addZombie, fetchWeapons, fetchArmors } from '../actions';
+import { addZombie, fetchWeapons, fetchArmors, fetchUser } from '../actions';
 
 
 class ZombiesNew extends Component {
@@ -14,9 +14,11 @@ class ZombiesNew extends Component {
   componentWillMount() {
     this.props.fetchWeapons();
     this.props.fetchArmors();
+    this.props.fetchUser();
   }
 
   onSubmit = ({formData}) => {
+    console.log(formData);
     this.props.addZombie(formData, () => {
       this.props.history.push('/');
     });
@@ -35,13 +37,12 @@ class ZombiesNew extends Component {
     schema.properties.data.properties.attributes.properties.armor_ids.items.enumNames = this.props.armors.map((armor) => {
       return armor.name;
     });
-
+    formData.data.attributes.user_id = this.props.user
   }
 
   render() {
     this.updateSchema();
 
-    console.log(this.props.schema);
     // console.log(this.props.weapon_ids);
     return [
       <Aside key="aside">
@@ -63,10 +64,11 @@ class ZombiesNew extends Component {
 function mapStateToProps(state) {
   return {
     weapons: state.weapons.data,
-    armors: state.armors.data
+    armors: state.armors.data,
+    user: state.user.id
   }
 }
 
 
 
-export default connect(mapStateToProps, { addZombie, fetchWeapons, fetchArmors })(ZombiesNew);
+export default connect(mapStateToProps, { addZombie, fetchWeapons, fetchArmors, fetchUser })(ZombiesNew);

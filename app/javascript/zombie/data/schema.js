@@ -16,6 +16,7 @@ export const schema = {
             speed: { type: "integer", title: "speed" },
             brains_eaten: { type: "integer", title: "brains eaten" },
             turn_date: { type: "string", title: "turn date" },
+            user_id: { type: "integer" },
             weapon_ids: {
               type: "array",
               title: "select weapons",
@@ -74,6 +75,7 @@ export const uiSchema = {
       hit_points: { "ui:widget" : "range" },
       speed: { "ui:widget" : "range" },
       brains_eaten: { "ui:widget" : "range" },
+      user_id: { "ui:widget" : "hidden" },
       weapons_attributes: {
         items: {
           attack_points: { "ui:widget" : "range" },
@@ -94,6 +96,9 @@ export const uiSchema = {
 
 export const formData = {
   data: {
-    type: "zombie"
+    type: "zombie",
+    attributes: {
+      user_id: ""
+    }
   }
 }

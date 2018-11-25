@@ -160,7 +160,7 @@ RSpec.describe 'Zombies API', type: :request do
             brains_eaten: rand(1..10),
             speed: rand(1..50),
             turn_date: Date.today,
-            weapons_ids: [Weapon.first.id, Weapon.last.id],
+            weapon_ids: [Weapon.first.id, Weapon.last.id],
             user_id: user.id,
             armors_attributes: [
               {
