@@ -23,7 +23,7 @@ gem 'mysql2', '~> 0.5.2'
 gem 'puma', '~> 3.7'
 
 # webpacker for front end
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 3.0'
 
 # JSON API
 gem 'jsonapi-rails'
