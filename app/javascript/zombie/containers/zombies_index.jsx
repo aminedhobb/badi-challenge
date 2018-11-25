@@ -25,8 +25,6 @@ class ZombiesIndex extends Component {
     return [
       <Aside key="aside">
         <Link to="/zombies/new">Create a zombie</Link>
-        <br/>
-        <Link to="/users/sign_in" onClick={this.handleClick} >Log out</Link>
       </Aside>,
       <div className="list-container" key="zombies">
         <div className="search-bar">
