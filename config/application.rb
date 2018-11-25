@@ -9,7 +9,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
-# require "sprockets/railtie"
+require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -21,7 +21,6 @@ module BadiCodingChallengeBackend
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
-    config.assets.initialize_on_precompile = false
 
     # needed for devise
     # config.middleware.use ActionDispatch::Flash
