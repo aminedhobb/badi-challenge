@@ -10,6 +10,7 @@ export const initialState = {
           "speed": 2,
           "brains_eaten": 12,
           "turn_date": "2018-08-12T00:00:00.000Z",
+          "user_id": null,
           "weapons": [
             {
               "id": 197,

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
-import { fetchZombies } from '../actions';
+import { fetchZombies, fetchUser, deleteZombie } from '../actions';
 
 import Aside from '../components/aside';
 
@@ -13,11 +13,26 @@ class ZombiesShow extends Component {
     if (!this.props.zombie) {
       this.props.fetchZombies();
     }
+    this.props.fetchUser();
+  }
+
+  handleClick = () => {
+    this.props.deleteZombie(this.props.zombie, this.props.history);
   }
 
   render () {
     const zombie = this.props.zombie;
+    const user = this.props.user;
+    let deleteLink = null;
 
+    if (zombie && user === zombie.attributes.user_id) {
+      deleteLink = (
+        <button className="delete" onClick={this.handleClick}>
+          <i className="fa fa-trash-o" aria-hidden="true"></i>
+            Delete
+        </button>
+      );
+    }
     if (!zombie) {
       return (
         <Aside key="aside">
@@ -39,7 +54,7 @@ class ZombiesShow extends Component {
               <h5><strong> Weapons : </strong></h5>
                 {this.props.zombie.attributes.weapons.map((weapon) => {
                   return(
-                    <ul>
+                    <ul key={weapon.id}>
                       <li>Name: {weapon.name} </li>
                       <li>Attack points: {weapon.attack_points} </li>
                       <li>Durability: {weapon.durability} </li>
@@ -52,7 +67,7 @@ class ZombiesShow extends Component {
               <h5><strong> Armors : </strong></h5>
                 {this.props.zombie.attributes.armors.map((armor) => {
                   return(
-                    <ul>
+                    <ul key={armor.id}>
                       <li>Name: {armor.name} </li>
                       <li>Defense points: {armor.defense_points} </li>
                       <li>Durability: {armor.durability} </li>
@@ -62,6 +77,7 @@ class ZombiesShow extends Component {
                 })}
             </div>
           </div>
+          {deleteLink}
         </div>
       </div>
     ];
@@ -71,12 +87,13 @@ class ZombiesShow extends Component {
 function mapStateToProps(state, ownProps) {
   const id = ownProps.match.params.id;
   return {
-    zombie: state.zombies.data.find((zombie) => zombie.id === id)
+    zombie: state.zombies.data.find((zombie) => zombie.id === id),
+    user: state.user.id
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchZombies }, dispatch)
+  return bindActionCreators({ fetchZombies, fetchUser, deleteZombie }, dispatch)
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ZombiesShow));

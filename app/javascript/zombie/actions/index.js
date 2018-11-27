@@ -41,7 +41,6 @@ export function searchZombies(query) {
 export function addZombie(zombie, callback) {
   const url = `${BASE_URL}/zombies/`;
   const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
-  console.log(csrfToken);
   const request = fetch(url, {
     method: 'POST',
     headers: {
@@ -58,6 +57,23 @@ export function addZombie(zombie, callback) {
     type: ADD_ZOMBIE,
     payload: request
   }
+}
+
+export function deleteZombie(zombie, history) {
+  const url = `${BASE_URL}/zombies/${zombie.id}`;
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+  const request = fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'X-CSRF-Token': csrfToken
+    },
+    credentials: 'same-origin',
+  }).then(r => history.push(''))
+
+  return {
+    type: 'REMOVE_CAR',
+    payload: zombie
+  };
 }
 
 export function fetchUser() {
@@ -89,4 +105,3 @@ export function fetchWeapons() {
     payload: promise
   }
 }
-

@@ -23,14 +23,6 @@ module BadiCodingChallengeBackend
 
     # config.assets.initialize_on_precompile = false
 
-    # needed for devise
-    # config.middleware.use ActionDispatch::Flash
-    # config.middleware.use Rack::MethodOverride
-    # config.middleware.use ActionDispatch::Cookies
-
-    # Rails.application.config.session_store :cache_store, key: '_app'
-
-    # config.middleware.use ActionDispatch::Session::RedisSessionStore
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

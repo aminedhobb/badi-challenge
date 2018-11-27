@@ -18,7 +18,6 @@ class ZombiesNew extends Component {
   }
 
   onSubmit = ({formData}) => {
-    console.log(formData);
     this.props.addZombie(formData, () => {
       this.props.history.push('/');
     });
@@ -43,7 +42,6 @@ class ZombiesNew extends Component {
   render() {
     this.updateSchema();
 
-    // console.log(this.props.weapon_ids);
     return [
       <Aside key="aside">
         <Link to="/">Back to list</Link>

@@ -69,9 +69,13 @@ The response will have the following format:
 }
 ```
 
+For all the requests I chose the JSON API format defined [here][https://jsonapi.org/].
+I chose it because I'm already familiar with it and it brings homogenity to our API.
+
 ## Search for a zombie
 
-You can search for specific zombies by adding a query to the url. You can search the zombies by name, by weapon name or by armor name. 
+You can search for specific zombies by adding a query to the url. You can search the zombies by name, by weapon name or by armor name. To do this I chose the `searchkick` gem that uses elastic search. I chose it for its efficiency and simplicity to use.
+
 Here is an example if you search for the word `guitar` :
 ```bash
 verb: GET
