@@ -2,6 +2,8 @@ class Zombie < ApplicationRecord
   searchkick word_start: [:zombie_name, :weapons_name, :armors_name]
   scope :search_import, -> { includes(:weapons, :armors) }
 
+  mount_base64_uploader :avatar, AvatarUploader
+
   belongs_to :user
 
   has_many :zombie_armors, dependent: :destroy

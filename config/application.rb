@@ -1,6 +1,6 @@
 require_relative 'boot'
 
-require "rails"
+require "rails/all"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
@@ -10,6 +10,8 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
+require "carrierwave"
+# require "active_storage/engine"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -19,7 +21,7 @@ Bundler.require(*Rails.groups)
 module BadiCodingChallengeBackend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.1
+    config.load_defaults 5.2
 
     # config.assets.initialize_on_precompile = false
 

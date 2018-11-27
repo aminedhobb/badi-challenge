@@ -22,7 +22,6 @@ class ZombiesIndex extends Component {
   }
 
   render() {
-    console.log(this.props.user)
     return [
       <Aside key="aside">
         <Link to="/zombies/new">Create a zombie</Link>

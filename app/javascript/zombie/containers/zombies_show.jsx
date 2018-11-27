@@ -24,7 +24,7 @@ class ZombiesShow extends Component {
     const zombie = this.props.zombie;
     const user = this.props.user;
     let deleteLink = null;
-
+    let avatar = null;
     if (zombie && user === zombie.attributes.user_id) {
       deleteLink = (
         <button className="delete" onClick={this.handleClick}>
@@ -32,6 +32,11 @@ class ZombiesShow extends Component {
             Delete
         </button>
       );
+    }
+    if (zombie && zombie.attributes.avatar.url) {
+      avatar = <img className="zombie-picture" src={zombie.attributes.avatar.url} />;
+    } else {
+      avatar = <img className="zombie-picture" src="https://img00.deviantart.net/144a/i/2006/067/0/d/acrylic_zombie_square_by_jimroundsound.jpg" />;
     }
     if (!zombie) {
       return (
@@ -47,7 +52,7 @@ class ZombiesShow extends Component {
       style={{backgroundImage: 'url("https://cdn03.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_IZombie_image1600w.jpg")',
               backgroundSize: 'cover', backgroundPosition: 'center center'}}>
         <div className="zombie-card">
-          <img className="zombie-picture" src="https://img00.deviantart.net/144a/i/2006/067/0/d/acrylic_zombie_square_by_jimroundsound.jpg" />
+          {avatar}
           <div className="zombie-details">
             <span>{zombie.attributes.name}</span>
             <div className="weapons-details">

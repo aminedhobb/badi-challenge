@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# for avatar upload
+gem 'carrierwave-base64'
+
 # for user identification
 gem 'devise'
 
@@ -16,7 +19,7 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'sass-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.3'
+gem 'rails', '~> 5.2'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5.2'
 # Use Puma as the app server

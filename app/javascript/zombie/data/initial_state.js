@@ -11,6 +11,9 @@ export const initialState = {
           "brains_eaten": 12,
           "turn_date": "2018-08-12T00:00:00.000Z",
           "user_id": null,
+          "avatar": {
+            "url": null
+          },
           "weapons": [
             {
               "id": 197,

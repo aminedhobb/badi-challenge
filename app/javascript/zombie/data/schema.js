@@ -17,6 +17,7 @@ export const schema = {
             brains_eaten: { type: "integer", title: "brains eaten" },
             turn_date: { type: "string", title: "turn date" },
             user_id: { type: "integer" },
+            avatar: { type: "string", title: "avatar", format: "data-url" },
             weapon_ids: {
               type: "array",
               title: "select weapons",
@@ -76,6 +77,7 @@ export const uiSchema = {
       speed: { "ui:widget" : "range" },
       brains_eaten: { "ui:widget" : "range" },
       user_id: { "ui:widget" : "hidden" },
+      // avatar: { "ui:widget" : "file" },
       weapons_attributes: {
         items: {
           attack_points: { "ui:widget" : "range" },
