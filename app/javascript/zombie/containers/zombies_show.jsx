@@ -20,39 +20,47 @@ class ZombiesShow extends Component {
     this.props.deleteZombie(this.props.zombie, this.props.history);
   }
 
-  render () {
-    const zombie = this.props.zombie;
-    const user = this.props.user;
-    let deleteLink = null;
-    let avatar = null;
+  getAvatar = (zombie) => {
+    if (zombie && zombie.attributes.avatar.url) {
+      return <img className="zombie-picture" src={zombie.attributes.avatar.url} />;
+    } else {
+      return <img className="zombie-picture" src="https://img00.deviantart.net/144a/i/2006/067/0/d/acrylic_zombie_square_by_jimroundsound.jpg" />;
+    }
+  }
+
+  deleteLink = (zombie, user) => {
     if (zombie && user === zombie.attributes.user_id) {
-      deleteLink = (
+      return (
         <button className="delete" onClick={this.handleClick}>
           <i className="fa fa-trash-o" aria-hidden="true"></i>
             Delete
         </button>
       );
-    }
-    if (zombie && zombie.attributes.avatar.url) {
-      avatar = <img className="zombie-picture" src={zombie.attributes.avatar.url} />;
     } else {
-      avatar = <img className="zombie-picture" src="https://img00.deviantart.net/144a/i/2006/067/0/d/acrylic_zombie_square_by_jimroundsound.jpg" />;
+      return null;
     }
+  }
+
+  render () {
+    const zombie = this.props.zombie;
+    const user = this.props.user;
+
     if (!zombie) {
       return (
         <Aside key="aside">
           <Link to="/">Back to list</Link>
         </Aside>);
     }
+    
     return [
       <Aside key="aside">
         <Link to="/">Back to list</Link>
       </Aside>,
       <div className="zombie-container" key="zombie"  
-      style={{backgroundImage: 'url("https://cdn03.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_IZombie_image1600w.jpg")',
+      style={{backgroundImage: 'linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url("https://cdn03.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_IZombie_image1600w.jpg")',
               backgroundSize: 'cover', backgroundPosition: 'center center'}}>
         <div className="zombie-card">
-          {avatar}
+          {this.getAvatar(zombie)}
           <div className="zombie-details">
             <span>{zombie.attributes.name}</span>
             <div className="weapons-details">
@@ -60,10 +68,10 @@ class ZombiesShow extends Component {
                 {this.props.zombie.attributes.weapons.map((weapon) => {
                   return(
                     <ul key={weapon.id}>
-                      <li>Name: {weapon.name} </li>
-                      <li>Attack points: {weapon.attack_points} </li>
-                      <li>Durability: {weapon.durability} </li>
-                      <li>Price: {weapon.price} </li>
+                      <li><strong>Name:</strong>  {weapon.name} </li>
+                      <li><strong>Attack points:</strong>  {weapon.attack_points} </li>
+                      <li><strong>Durability:</strong>  {weapon.durability} </li>
+                      <li><strong>Price:</strong>  {weapon.price} </li>
                     </ul>
                   )
                 })}
@@ -73,16 +81,16 @@ class ZombiesShow extends Component {
                 {this.props.zombie.attributes.armors.map((armor) => {
                   return(
                     <ul key={armor.id}>
-                      <li>Name: {armor.name} </li>
-                      <li>Defense points: {armor.defense_points} </li>
-                      <li>Durability: {armor.durability} </li>
-                      <li>Price: {armor.price} </li>
+                      <li><strong>Name:</strong>  {armor.name} </li>
+                      <li><strong>Defense points:</strong>  {armor.defense_points} </li>
+                      <li><strong>Durability:</strong>  {armor.durability} </li>
+                      <li><strong>Price:</strong>  {armor.price} </li>
                     </ul>
                   )
                 })}
             </div>
           </div>
-          {deleteLink}
+          {this.deleteLink(zombie, user)}
         </div>
       </div>
     ];

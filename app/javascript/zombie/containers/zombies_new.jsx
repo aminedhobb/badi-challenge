@@ -46,7 +46,7 @@ class ZombiesNew extends Component {
       <Aside key="aside">
         <Link to="/">Back to list</Link>
       </Aside>,
-      <div key="add" className="form-container" style={{backgroundImage: 'url("https://cdn03.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_IZombie_image1600w.jpg")'}}>
+      <div key="add" className="form-container">
         <div className="form-content">
           <Form schema={schema}
             uiSchema={uiSchema}
@@ -66,7 +66,5 @@ function mapStateToProps(state) {
     user: state.user.id
   }
 }
-
-
 
 export default connect(mapStateToProps, { addZombie, fetchWeapons, fetchArmors, fetchUser })(ZombiesNew);

@@ -1,0 +1,13 @@
+.form-container {
+  overflow: scroll;
+  width: calc(100% - 220px);
+  background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url("https://cdn03.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_IZombie_image1600w.jpg");
+  background-size: cover;
+  background-position: center center;
+  text-align: center;
+}
+
+.form-content {
+  display: inline-block;
+  text-align: left;
+}
