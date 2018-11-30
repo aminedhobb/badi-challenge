@@ -38,7 +38,7 @@ RSpec.describe 'Zombies API', type: :request do
       before { get "/api/v1/zombies?query=#{zombie.name}" }
 
       it 'returns at least one record' do
-        expect(json['data']).not_to be_empty
+        expect(json['data'].size).to eq(1)
       end
 
       it 'returns a status code 200' do
@@ -120,7 +120,7 @@ RSpec.describe 'Zombies API', type: :request do
     context 'when the request is valid' do
       before do
         sign_in user
-        post '/api/v1/zombies', params: valid_attributes, headers: headers 
+        post '/api/v1/zombies', params: valid_attributes, headers: headers
       end
 
       it 'creates a zombie' do
@@ -135,7 +135,7 @@ RSpec.describe 'Zombies API', type: :request do
     context 'when the request is invalid' do
       before do 
         sign_in user
-        post '/api/v1/zombies', params: invalid_attributes, headers: headers 
+        post '/api/v1/zombies', params: invalid_attributes, headers: headers
       end
 
       it 'returns status code 422' do

@@ -67,7 +67,6 @@ export function deleteZombie(zombie, history) {
     headers: {
       'X-CSRF-Token': csrfToken
     },
-    credentials: 'same-origin',
   }).then(r => history.push(''));
 
   return {

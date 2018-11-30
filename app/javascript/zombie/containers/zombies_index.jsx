@@ -12,6 +12,10 @@ class ZombiesIndex extends Component {
     this.props.fetchZombies();
   }
 
+  componentDidMount() {
+    this.searchInput.focus();
+  }
+  
   handleClick = () => {
     this.props.logout(this.props.history);
   }
@@ -42,7 +46,7 @@ class ZombiesIndex extends Component {
       <div className="list-container" key="zombies">
         <div className="search-bar">
           <input type="text" className="form-control form-search"
-            onChange={this.handleUpdate} />
+            onChange={this.handleUpdate} ref={(input) => { this.searchInput = input; }} />
         </div>
         {this.props.zombies.map((zombie) => {
           return (

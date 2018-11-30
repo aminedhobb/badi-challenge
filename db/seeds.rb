@@ -12,7 +12,7 @@ Armor.destroy_all
 
 puts 'creating zombies, weapons, armors and users...'
 
-50.times do
+20.times do
   FactoryBot.create(:zombie)
 end
 

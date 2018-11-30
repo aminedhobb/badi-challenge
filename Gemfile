@@ -34,12 +34,6 @@ gem 'jsonapi-rails'
 # Search Gem
 gem 'searchkick'
 
-# To create records easily
-gem 'factory_bot_rails', '~> 4.0'
-
-# Use Faker to create seeds or factories
-gem 'faker', git: 'https://github.com/stympy/faker'
-
 # Use Redis adapter to run Action Cable in production
 gem 'redis'
 # Use ActiveModel has_secure_password
@@ -60,6 +54,11 @@ group :development, :test do
   # Use Rspec as testing tool
   gem 'rspec-rails'
 
+  # To create records easily
+  gem 'factory_bot_rails', '~> 4.0'
+
+  # Use Faker to create seeds or factories
+  gem 'faker', git: 'https://github.com/stympy/faker'
 end
 
 group :development do

@@ -27,7 +27,7 @@ class Api::V1::ZombiesController < ApplicationController
   end
 
   def destroy
-    @zombie.destroy
+    @zombie.destroy!
     head :no_content
   end
 
