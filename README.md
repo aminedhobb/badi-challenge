@@ -1,29 +1,30 @@
-# Zombie API
+# Zombie App
 
-This API will help you store information about zombies and their armors and weapons. Five HTTP endpoints are here for you to use:
+This app uses a rails API providing endpoints to retrieve, create, update and destroy zombies. Each zombie can have several weapons and several armors. 
+The client side is done entirely with React.
 
 ## Run the application locally
 
 To run the application locally, you should run these commands (supposing you already created and migrated the db) :
-
+```
   $ bundle install
   $ rails s
+```
 
 If you want to run the test do:
-  $ bundle exec rspec
 
-If you want to run the application that is in production, go to : `http://zombiechallenge.herokuapp.com`.
-If you're not signed up already you need to create an account to access the app. There might be some time where the app stops working in production, it is because the maximum connection to the db has been reached with the free plan of `ClearDB` in Heroku. This might happen if you use a lot the search engine because it makes a lot of queries every time you tap a key.
+```
+  $ bundle exec rspec
+```
 
 Here's the HTTP request you can run :
 
-## Retrieve zombies 
+## Zombie API
 
 To retrieve all the zombies present in the database, you need to do the following request : 
 ```bash
 verb: GET
-url-local: http://localhost:3000/api/v1/zombies
-url-prod: http://zombiechallenge.herokuapp.com/api/v1/zombies
+url: http://localhost:3000/api/v1/zombies
 ```
 
 The response will have the following format:
@@ -69,7 +70,7 @@ The response will have the following format:
 }
 ```
 
-For all the requests I chose the JSON API format defined [here][https://jsonapi.org/].
+For all the requests I chose the JSON API format defined [here](https://jsonapi.org/).
 I chose it because I'm already familiar with it and it brings homogenity to our API.
 
 ## Search for a zombie
@@ -79,8 +80,7 @@ You can search for specific zombies by adding a query to the url. You can search
 Here is an example if you search for the word `guitar` :
 ```bash
 verb: GET
-url-local: http://localhost:3000/api/v1/zombies?query=guitar
-url-prod: http://zombiechallenge.herokuapp.com/api/v1/zombies?query=guitar
+url: http://localhost:3000/api/v1/zombies?query=guitar
 ```
 
 Then the response will have this format : 
@@ -162,18 +162,16 @@ Then the response will have this format :
 
 
 
-
 ## Create a zombie
 
-To create a zombie you need to be logged in already to pass a csrf token in the headers.
+To create a zombie you need to be logged in already.
 If you want to create a new weapon, you have to pass its attributes in the `weapons_attributes` array field. If you want to add an existing weapon, you have to pass its id in the `weapon_ids`array field.
 The armors work the same way as the weapons. Here is a request example for a zombie creation with a new weapon, a new armor and already existing armors.
 
 ```bash
 verb POST
-headers: Content-Type: application/vnd.api+json, Accept: application/vnd.api+json, X-CSRF-Token: csrftoken
-url-local: http://localhost:3000/api/v1/zombies
-url-prod: http://zombiechallenge.herokuapp.com/api/v1/zombies
+headers: Content-Type: application/vnd.api+json, Accept: application/vnd.api+json
+url: http://localhost:3000/api/v1/zombies
 
 body example: 
 {
@@ -216,9 +214,8 @@ You also need to be logged in to update a zombie. You pass the id of the zombie 
 
 ```bash
 verb: PATCH or PUT
-headers: Content-Type: application/vnd.api+json, Accept: application/vnd.api+json, X-CSRF-Token: csrftoken
-url-local: http://localhost:3000/api/v1/zombies/:id
-url-prod: http://zombiechallenge.herokuapp.com/api/v1/zombies/:id
+headers: Content-Type: application/vnd.api+json, Accept: application/vnd.api+json
+url: http://localhost:3000/api/v1/zombies/:id
 body: 
 {
   "data": {
@@ -249,9 +246,7 @@ You also need to be logged in to destroy a zombie. You pass the id of the zombie
 
 ```bash
 verb: DELETE
-headers:  X-CSRF-Token: csrftoken
-url-local: http://localhost:3000/api/v1/zombies/:id
-url-prod: http://zombiechallenge.herokuapp.com/api/v1/zombies/:id
+url: http://localhost:3000/api/v1/zombies/:id
 ```
 
 ## React App
